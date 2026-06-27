@@ -600,8 +600,7 @@ principle) — never behind data tables or long text.
 > observed findings below — these are what we actually *saw*, not assumptions. **For the exhaustive,
 > corner-by-corner dossier** — exact tokens pulled from each site's live stylesheets (palette, fonts,
 > gradients, shadows, easings, `@keyframes`), full content/section outlines, and per-site adopt/reject —
-> see [`inspiration/DEEP-ANALYSIS.md`](./inspiration/DEEP-ANALYSIS.md) (raw data in
-> `inspiration/_tokens.json` + `_outline.json`).
+> see **Appendix A (§18)** at the end of this file (raw data in `inspiration/_tokens.json` + `_outline.json`).
 
 ### 10a · Screenshot findings (what we observed, captured 2026-06-27)
 
@@ -986,6 +985,120 @@ function ServiceCard({ domain, eyebrow, title, summary, stat }: {
 .ds-seal { animation: ds-settle var(--ds-dur-enter) var(--ds-spring-soft) both; }
 @media (prefers-reduced-motion: reduce) { .ds-seal { animation: none; } }
 ```
+
+---
+
+## 18 · Appendix A — Per-site deep analysis (exact tokens + structure)
+
+> Exhaustive, corner-by-corner study of every reference site. For each: the **exact design tokens pulled
+> from its live stylesheets** (colors, fonts, type sizes, radii, shadows, gradients, easings, `@keyframes`,
+> backdrop-filters), the **page structure** (sections/headings/controls incl. below-the-fold), the
+> **creative devices**, and **what we adopt**. Tokens from `inspiration/_tokens.json`; content outlines from
+> `inspiration/_outline.json`; hero images `inspiration/*.jpg`. *Honest limits:* the render service caps
+> screenshot height and the sandbox browser couldn't init NSS, so coverage = hero images + full token/DOM
+> extraction (more precise than lower-fold screenshots) rather than full-page images; SPA shells inline
+> tokens in JS, so their palettes are partial. *Values are observed facts; commentary paraphrased —
+> content rephrased for compliance with licensing restrictions.*
+
+### A1 · kinetics.colorion.co — "motion that has weight"
+**Identity.** Dark warm-charcoal lab, single **amber** accent, monospace instrumentation; our most useful motion reference.
+- **Palette (named vars):** `--graphite #0e0e10` · `--graphite-2 #141417` · `--card #1a1a1d` · `--card-2 #232326` · `--line #2a2a2e` · text `--bone #ede9e0` / `--bone-dim #a8a6a0` / `--bone-faint #6e6c68` · `--amber #ff8a00` / `--amber-deep #b36200` · `--wire #5b8def` · `--danger #ff5c5c` · `--ok #4cd08a`.
+- **Fonts:** `Archivo` (display) · `JetBrains Mono` (labels) · `Inter` (body). Tracking `-0.02em` display / `+0.03–0.05em` mono caps.
+- **Radii:** `50%`, `100px`, organic **blob `42% 58% 70% 30% / 45% 45% 55% 55%`**. **Shadows:** amber glow `0 0 48px 8px rgba(255,138,0,.55)`, hard offset `0 6px 0 #B36200`.
+- **Easings:** spring `cubic-bezier(0.34,1.56,0.64,1)` · entrance `cubic-bezier(0.16,1,0.3,1)` · in-out `cubic-bezier(0.65,0,0.35,1)`. **Backdrop:** `blur(14px)`, `blur(6px)`.
+- **`@keyframes` (45):** spin · shimmer-sweep · ripple-out · marquee-scroll · pulse-ring · shake-x · confetti-fly · dot-wave · breathe · float-bob · blob-morph · neon-pulse · eq-pump …
+- **Structure.** H1 "Motion that has weight." → **Interaction & Input · Feedback & State · Surface & Motion** → "Two numbers, not a duration." → "Built for the copy-paste workflow." Every demo ships **CSS/React/Prompt** tabs + Copy.
+- **Adopt.** Confirms our entrance easing; use the **mono live-readout** (`damping/stiffness/mass`) for tunables/aggregates; **clamp** their `1.56` overshoot to ≤6%. Their amber is theirs — we keep indigo/gold.
+
+### A2 · gradientbuttons.colorion.co — tonal button gallery
+- Tailwind v4 (`color-mix(in oklab,…)`); slate neutrals `#0f172a · #334155 · #cbd5e1 · #f8fafc · #e2e8f0`; card **radius `10px`**; glow `0 0 20px #eee`.
+- **Gradients 2–3 stop, position-animated:** *Sea Blue/Nimvelo* `linear-gradient(to right,#2b5876 0%,#4e4376 51%,#2b5876 100%)`; *Horizon* `#314755 → #26a0da 51% → #314755`. Hover = animate **`background-position`** over a 200%-wide gradient, not hue. Easing `cubic-bezier(.4,0,.2,1)`.
+- **Structure.** 24 named swatches (Sea Blue, Nimvelo, Hazel, Noon to Dusk, YouTube, Cool Brown, Harmonic Energy, Playing with Reds, Sunny Days, Green Beach, Intuitive Purple, Emerald Water, Lemon Twist, Monte Carlo, Horizon, Rose Water, Frozen, Mango Pulp, Bloody Mary…). Card = title + heart/copy + "HOVER ME" + Show code/Copy CSS.
+- **Adopt.** Our primary-CTA **tonal gradient + position-shift hover** (navy family on our indigo); card anatomy.
+
+### A3 · coverflow.ashishgogula.in — iOS cover flow for React
+- shadcn (`hsl(var(--…))`). Radii `9999px`, `32px`, `var(--radius)`, `calc(var(--radius) - 2px)`. Easing `cubic-bezier(.4,0,.2,1)`. `@keyframes enter · exit`. Tracking **`-0.025em`** display; active scale `0.98`; dot-grid `radial-gradient(#ffffff59 1px,#0000 0)`; glass `inset 0 1px #ffffff0d` + `blur(10px)`.
+- **Structure.** "iOS-like Cover Flow for React." → **Fluid Physics Engine · Keyboard First · Zero Layout Shift · Touch Ready · Dark Mode Native** → "Midnight Dreams" demo → mono `npx shadcn add …` bar. Crosshair `+` corner framing.
+- **Adopt.** Our Cover-Flow showcase (§6.8) — zero-layout-shift + keyboard-first; crosshair framing; press `scale .98`.
+
+### A4 · backgrounds.supply — gradient/texture library (Framer)
+- Fonts `Inter / Inter Display / Satoshi / Geist`. Canvas `rgb(3,6,17)`; accents `#09f` blue + `rgb(255,60,113)` pink. Radii `12/16/32px`, `50%`. **Backdrop `blur(12px)` & `blur(22px)`.** Shadow `0 12px 40px rgba(0,0,0,.45)`. Tracking `-0.02em`. **Edge-fade mask** `linear-gradient(to right, transparent, #000 12.5%, #000 87.5%, transparent)`; border `#ffffff1a`. Easing `cubic-bezier(.44,0,.56,1)`.
+- **Structure.** H1 "Jaw-dropping backgrounds…" → "29 Collections · 1,273 Backgrounds · lifetime" → Gradient Lab → FAQ.
+- **Adopt.** Edge-fade mask for scrollers/tickers; backdrop `blur 12–22px`; "one lit 3D-spot object"; serif-italic emphasis.
+
+### A5 · styles.refero.design — DESIGN.md examples gallery
+- Fonts **`Neue Montreal`** + `JetBrains Mono`. Light `#f7f8fb` / dark `#0d0f15`; ink `#000 / #171717`; muted `#6f7179`; accent red `#f73b20` (`135deg #f8a4a4 → #f73b20`). Radius on `var(--radius)` ×.5/2/4 + `999px`. Easings `--ease-out cubic-bezier(0,0,.2,1)` · `--ease-in-out cubic-bezier(.4,0,.2,1)`. `@keyframes shimmer · pulse · enter · exit`. Display 44/28/25px.
+- **Structure.** Filter pills (Minimal · Clean SaaS · Editorial Type · Soft Gradients · Monochrome · Playful · High Contrast · Premium) → Trending/Popular/Newest → gallery with **poetic one-liners** (Apple "Gallery wall at natural light", Mercury "Mountain Top Command Center", Home "Broadsheet financial broadside", Ui "brutalist Swiss grid in graphite", Resend "Obsidian developer terminal"). Refero **MCP**.
+- **Adopt.** **Poetic one-line descriptors** per service; filter-pill taxonomy + tabbed gallery (§6.13).
+
+### A6 · aura.build — AI design generator
+- Fonts `Inter` + `Google Sans Flex` + `Geist` + **`Newsreader` serif** + `Geist Mono`. Accent blue `#2563eb`. Radii `8px`, `var(--radius)`, `9999px`, `1.5rem`. Display **60/48/36/30px**. Easings `.4,0,.2,1` · `.16,1,.3,1` · `.25,1,.5,1`. **Conic border-spin** `conic-gradient(from calc(var(--gradient-angle)+45deg),black,transparent 10% 90%,black)`. Shadow `0 3px 6px #00000026` + `inset 0 .5px #777`. `@keyframes fadeSlideIn · columnReveal · border-spin · breathe · sonar · beam-spin · marquee-scroll · float`.
+- **Structure.** Hero = **AI prompt composer** over faint **column-grid guides**; eyebrow pill; **tri-state theme toggle**; "Trending" gallery.
+- **Adopt.** Column-grid background guides; tri-state theme toggle; conic **border-spin** as a rare gated "processing" affordance.
+
+### A7 · neuform.ai — prompt-to-production (our dark/glass bible)
+- Fonts **`DM Sans`** + `IBM Plex Mono` + `JetBrains Mono`. `#000`/`#050505`/white with **white-alpha surfaces** `rgba(255,255,255,.05/.06/.08/.10/.12)` (depth by alpha). Accent blurple `#5865f2 / #4d5ae2 / #626fff / #5461ec`. **Radius `999px` (198×)** + `8/10/12/6`. **Glass** `linear-gradient(145deg,#121720db,#0a0c12e0) padding-box, var(--glass-border-gradient)` + **`blur(18px) saturate(130%)`**. Shadow `0 14px 30px #00000047, inset 0 1px #ffffff08`. **Mono labels 9–12px.** Easings `cubic-bezier(.16,1,.3,1)` · `.22,1,.36,1` · `.24,.84,.24,1`. Button `linear-gradient(180deg,#5865f2,#4d5ae2)`. `@keyframes auth-shell-fade-up · -square-in · -stripe-in · loader-*-glimmer`.
+- **Structure / bento.** Dark auth (mono eyebrow, "Continue with Google" pill + circular arrow, **avatar "24.4K"**). Cards: blue starburst; **dark "Global Telemetry" particle-sphere dashboard** (mono `NODE_A88 SYNCING`, **LIVE FEED** rows, KPI `12,042 NODES · 24.8 TB/s`); **horizontal accordion** (`01/DIRECTION` orbit · `02/EXPERIENCE` · `03/IDENTITY`, "Select a card to explore"); editorial "Bold Ideas" + B&W photo.
+- **Adopt.** Depth by **white-alpha steps + top inner highlight** (our dark elevation); glass `blur(18px) saturate(130%)`; mono labels 9–12px; **domain accordion (§6.11)** + **telemetry dashboard (§6.12)** lifted from here; blurple → our `#8E94FF`.
+
+### A8 · typeui.sh — "build better UI with AI"
+- Fonts **`Geist` + `Geist Mono`**. Ink `#18181b/#000`, canvas `#fafafa`, warm `#f5f0e8`. Accents amber `#f59e0b`, blue `#007acc`/`#2563eb`, teal `#34e8bb`. Radii `9999px` + `var(--radius-2xl/3xl/sm)`. **Double focus ring** `0 0 0 2px #fff, 0 0 0 6px #00000014`. Easings `cubic-bezier(.16,1,.3,1)`, silky **`cubic-bezier(.32,.72,0,1)`**, `(0,0,.2,1)`. **Page-rail gutter gradients.** `@keyframes homepage-tool-rotate-in/out · marquee · integration-card-glow/waves/bar-pulse`.
+- **Structure.** Create brand kit · Build MVP · Build where you want · Real design system · Spend fewer tokens · Make UI convert · Ship faster · FAQ(14) · Choose a design skill (Paper · Neumorphism · Bento · Perspective). Pricing Monthly/Yearly (Save 67%). Stat strip "77 skills · 449 prompts · 7,168 users".
+- **Adopt.** **Double-ring focus** for high-emphasis controls; silky `.32,.72,0,1` for sheet slides; **inline stat strip**; **page-rail gutter** framing.
+
+### A9 · open-design.ai — open-source agent design platform
+- Fonts `Albert Sans` + serif + mono + `Remix Icon`. `--paper #fafafa` · `--paper-warm #f5f5f5` · `--ink #262626` · `--ink-soft #434343` · `--ink-mute #595959` · `--ink-faint #8c8c8c` · green accents `#63fe13 / #83ff3b / #218c00` + lime tints `#d8ffb5 / #beff8c / #f2ffe6`. Radii `50% · 999px · 8/6/16/9/12`. Easing **expo-out `cubic-bezier(.23,1,.32,1)`** (36×). **Real liquid glass:** `backdrop: url(#nav-liquid-glass) blur(7px) saturate(1.4)` + `blur(26px) saturate(108%)`; layered glass shadow `inset 0 0 2px 1px #ffffff8c, inset 0 0 10px 4px #ffffff38, 0 6px 24px #11111a0f`. `@keyframes contributor-orbit-spin(-rev) · blurTextIn · marquee-x`.
+- **Structure.** Stats **52K+ Stars · 280+ Contributors · 217+ Plugins · 129+ Design Systems · 21 Agents**; Prototype/Dashboard/Slides/Image/Video/Design System; contributors orbit; FAQ. Blueprint grid + golden-ratio guides + scattered 3D tool props; **green Figma selection-box** framing the headline; SVG-filter glass nav.
+- **Adopt.** **expo-out `cubic-bezier(.23,1,.32,1)`** for big reveals; SVG-filter liquid glass (chrome only); blueprint+golden-ratio hero guides; **blur-in text** masthead reveal (reduced-motion safe).
+
+### A10 · liquid-glass-oss (playground) — WebGL glass
+- SF Pro. Accent **iOS blue `#0a84ff`** (`--lg-accent`) + `#6657ed` + `#58a6ff`. Dark `#0a0a0c/#050506/#252529/#29292e`. Radii `999px`·`50%`·`12/14/16/24/8`. Glass shadows `inset 0 1px #ffffffe6, 0 1px 4px #0000002e` + lift `0 24px 70px #00000047`. **Backdrop `blur(18–20px) saturate(130–135%)`**. Easing `cubic-bezier(.2,.8,.2,1)`. **Liquid `@keyframes`** `lg-liquid-window-in/out · -droplet-in · -bridge-in` (`--lg-droplet-from-y:-72px`).
+- **Physics defaults (studio UI):** Blur `.18` · Refraction `.12` · Chromatic `.045` · Distortion `.015` · Edge light `.08` · Specular `.14` · Fresnel `1.08` · Radius `22` · Depth `42`.
+- **Adopt.** Glass-chrome defaults (`blur 18–20px saturate 130%`, edge highlight `inset 0 1px rgba(255,255,255,.9)`) + these physics numbers **for chrome only, readability-gated**. *Reject* the droplet morph for work surfaces.
+
+### A11 · getdesign.md — the DESIGN.md catalog (source of our 8 refs)
+- Mono + sans on `#000`. Grayscale `#a0a0a0 · #404040 · #808080 · #c0c0c0 · #dfdfdf · #ededed`. Accents pink `#ffb1ee` + yellow `#ff0` + orange `#e3971c`. **Icon-tile radius `25%`**. Shadow `0 1px 2px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05)`. Pink **shimmer sweep** `linear-gradient(110deg, transparent 30%, rgba(255,177,238,.35) 50%, transparent 70%)`. Display leading `1.05`. `@keyframes catalog-shimmer · catalog-pulse · fade-up · heartbeat · marquee`.
+- **Structure.** "Production-grade DESIGN.md analysis" → **Quick Stats** (75 files, "Follows Google's official DESIGN.md spec") → category sidebar w/ counts (AI & LLM 12 · Dev Tools 7 · Backend/DB/DevOps 8 · SaaS 9 · Design 6 · Fintech 7 · E-commerce 5 · Media 14 · Automotive 7) + search + **table** (favicon · name · one-liner · `New` · Installs · Bookmarked). VoltAgent.
+- **Adopt.** **Category sidebar + searchable directory table + KPI columns** (§6.13); **shimmer-sweep** for loading rows.
+
+### A12 · bestdesignsonx.com — the curated X gallery
+- Fonts `Inter` + `Plus Jakarta Sans` + `Geist` + **`Instrument Serif`** (the serif-italic word). **OKLCH grayscale** `oklch(98.5% 0 0)` / `oklch(20.5% 0 0)` / `oklch(14.5% 0 0)` / `oklch(55.6% 0 0)`. Accents purple `#cc8ef5` + blue `#074de5`. Radii `.25rem · 4px · 50% · 100px · var(--radius-2xl)`. Shadow `0 4px 12px #0000001a, 0 0 0 2px #0003`. `@keyframes enter · exit · swipe-out-left/right/up/down` + `sonner` toasts.
+- **Structure.** Serif header "Best *Designs* on X.com" (one word blue italic), "Updated hourly", **list/grid/masonry** switch over an **8,000+ item bento gallery** (light-neumorphic widgets + dark-premium cards + pastel mesh + 3D-spot icons + brand-kit bentos).
+- **Adopt.** **Masonry/bento services gallery** + view switch; **Instrument Serif** for our serif-italic word; OKLCH neutral ramp confirms our section-hue OKLCH. *Reject* the card-swipe gesture.
+
+### A13 · designmd.me & designmd.supply — DESIGN.md generators
+SPA shells (tokens JS-bundled). **designmd.me** = **dark navy + dotted grid + purple glow** (≈ our Indigo Dusk), **blue serif-italic** emphasis, **URL-input hero** + "Try:" pills, "WHAT YOU GET" two-card checklist (`NEW` badge, purple-glow border); inline accents Vercel blue `#0070f3 / #3291ff`. **designmd.supply** = **warm off-white** (≈ Walnut Ivory), left-aligned editorial display with **gray serif-italic**, pill domain input + dark round arrow, **brand cards = thumbnail + favicon + `domain · category` + 3-dot swatch trio**.
+- **Adopt.** designmd.me validates **Indigo Dusk + serif-italic** ≈1:1; adopt **try-pills** + **two-card checklist**; designmd.supply's **brand card w/ swatch trio** → §6.14.
+
+### A14 · GitHub repos (context, not visual sources)
+- **google-labs-code/design.md** — the spec we conform to: **v0.3.0, 16.3k★, Apache-2.0**, `@google/design.md` CLI, PHILOSOPHY.md, all CSS color formats → confirms lint-in-CI.
+- **mattpocock/skills** — "Skills for Real Engineers" **142k★, MIT, v1.0.1** → reference for maintaining `.kiro/skills/`.
+- **docker/awesome-compose** — Compose samples; **not a design source** (kept for transparency).
+
+### A.synthesis — patterns that repeat (and our verdict)
+| Pattern | Seen on | Verdict |
+|---------|---------|---------|
+| Single chromatic accent + glow CTA | kinetics, backgrounds, Apple, Authkit | **Adopt** — indigo action; gold glow ceremonial only |
+| Serif-italic emphasis word in a sans display | bestdesignsonx, backgrounds, designmd.me/.supply, refero | **Adopt** — one phrase/heading (Instrument Serif / Boska) |
+| Mono "stamped" labels + live readouts/KPIs | kinetics, neuform, getdesign, typeui | **Adopt** — eyebrows, KPI strip, telemetry, IDs (`tnum`+`zero`) |
+| Depth by surface/alpha steps + 1px inset highlight (not drop shadow) | neuform, liquidglass, Seed, Apple | **Adopt** — §4 elevation |
+| Glass on chrome only: `blur 18–22px saturate 130%` + edge highlight | neuform, liquidglass, open-design, Dia | **Adopt** — top bar/modal/receipt, readability-gated |
+| Position-shift tonal gradient on primary button | gradientbuttons | **Adopt** — indigo CTA only |
+| Bento / masonry gallery + view switch | bestdesignsonx, neuform | **Adopt** — services gallery (§7) |
+| Category sidebar + searchable table + KPI columns | getdesign.md | **Adopt** — services directory (§6.13) |
+| Horizontal accordion for categories | neuform | **Adopt** — domain accordion (§6.11) |
+| Draughtsman framing (crosshair / selection-box / blueprint+golden-ratio) | coverflow, open-design, Authkit | **Adopt sparingly** — one hero moment |
+| Edge-fade marquee mask | backgrounds, aura, typeui | **Adopt** — tickers/scrollers |
+| Expo-out / silky easings `(.23,1,.32,1)`, `(.32,.72,0,1)` | open-design, typeui | **Adopt** — big reveals / sheet slides |
+| Tri-state theme toggle | aura, typeui | **Adopt** |
+| Poetic one-line descriptors per item | refero | **Adopt** — gives the directory soul |
+| Neo-brutalist all-mono; card-swipe; droplet morph; featherweight wt300 | hyperbrowser; bestdesignsonx; liquidglass; Dia/Seed | **Reject** — wrong register for a civic ops tool |
+
+> **Bottom line.** The ecosystem converges on: one warm/lifted canvas, one rationed accent, tight display
+> tracking, mono structural labels, depth-by-light-not-shadow, glass-on-chrome-only, one signature per
+> screen — the spine of this system. The genuinely new, directly-useful imports for an *operations* product
+> are the **services directory table**, the **horizontal domain accordion**, the **dark telemetry/KPI
+> dashboard**, and the **serif-italic emphasis word** — all folded into §6–§7 above.
 
 ---
 
