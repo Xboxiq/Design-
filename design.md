@@ -307,6 +307,13 @@ eyebrow/stamped labels. Never apply negative tracking to Arabic or to body sans.
 hierarchy; the **mono** face carries structure — stamped, wide-tracked, uppercase "labels that feel
 pressed, not typed." Keeping these two registers distinct is what reads as considered rather than generic.
 
+**Serif-italic emphasis word (sanctioned display device).** Observed on *five* ecosystem sites
+(bestdesignsonx, backgrounds.supply, designmd.me, designmd.supply, refero): set **one** word of a heading
+in a contrasting **serif italic** — e.g. "Turn any request into a *resolution*". It adds editorial warmth to
+a sans display without a second full typeface. Rules: one emphasis phrase per heading; use `--font-display`'s
+serif fallback or a paired serif (e.g. Boska); never on Arabic (use weight/color contrast instead); never more
+than one per screen.
+
 ---
 
 ## 3 · Layout & spacing
@@ -487,6 +494,18 @@ Observed on neuform's "Global Telemetry": a **dark operational dashboard** for r
 state + timestamp), and one chart whose series use the **section hues** (never rainbow). This is the
 one place dense data + dark + mono converge; keep it flat (no glass behind data), `tnum`+`zero` numerals.
 
+### 6.13 Services directory (category sidebar + searchable table)
+Observed on getdesign.md: for browsing **many** services/requests, an inline-start **category rail** with
+live counts (`Subscriptions 12 · Technical 7 · Billing 9 · Complaints 6`), a search field, and a
+**searchable table** — each row = icon + name + one-line description + state badge + mono `tnum` KPI columns
+(e.g. open count, avg age). Flat, quiet, `--section-c` only on the active category. The operational complement
+to the visual card grid (§6.2): cards to *discover*, this table to *work*.
+
+### 6.14 Brand / service card with swatch trio
+Observed on designmd.supply: a compact card = a preview **thumbnail** (or 3D-spot illustration) on top, then a
+footer row of **favicon/icon + name + `category · meta` + a 3-dot color-swatch trio** in the section hue. A
+tidy way to list services or branches at a glance; pairs with the masonry gallery (§7 imagery).
+
 ---
 
 ## 7 · Imagery & illustration system
@@ -567,13 +586,17 @@ principle) — never behind data tables or long text.
 | 9 | [google-labs design.md](https://github.com/google-labs-code/design.md) | The DESIGN.md spec + `npx @google/design.md lint` | Front-matter token schema, section order, WCAG lint | **Use** — this file conforms; lint in CI |
 | 10 | [open-design.ai](https://open-design.ai) | Open-source agent-native design platform + portable DESIGN.md | Brand-extraction → DESIGN.md flow, skill protocol | **Reference** — pairs with `open-design` skill |
 | 11 | [typeui.sh](https://typeui.sh) | Copy-paste AI UI section prompts (anti-slop, conversion) | Section layout starting points (hero, pricing, nav) | **Reference** — prompts, then re-skin to our tokens |
+| 11b | [designmd.me](https://designmd.me) | "Turn any website into a design system" — DESIGN.md + HTML preview generator | Navy+dotted-grid premium register; try-pills; feature checklist | **Reference** — validates our Indigo Dusk + serif-italic |
+| 11c | [designmd.supply](https://designmd.supply) | Warm off-white DESIGN.md generator (Context.dev → Google DESIGN.md) | Brand/service card = thumb + `domain · category` + swatch trio | **Adopt** — the card anatomy; warm-light register |
+| 11d | [getdesign.md](https://getdesign.md) | The #1 DESIGN.md catalog (source of `awesome-design-md`; Google spec) | Category sidebar + searchable directory table + KPI columns | **Adopt** — services-directory pattern |
+| 11e | [design-md.hyperbrowser.ai](https://design-md.hyperbrowser.ai) | Neo-brutalist all-mono DESIGN.md extractor | Boxed inline-code chip only | **Reject** — harsh mono brutalism counter to our register |
 | 12 | [aura.build](https://aura.build) · [neuform.ai](https://neuform.ai) | AI UI/site generators (neuform = neumorphic) | Generative starting points; neumorphic softness for 3D spot tier | **Reference** — direction only, hand-finish to tokens |
 | 13 | [github.com/mattpocock/skills](https://github.com/mattpocock/skills) | Agent skills library | Skill authoring patterns | **Reference** — for skill maintenance |
 | 14 | [docker/awesome-compose](https://github.com/docker/awesome-compose) | Docker Compose samples | — *not a design source* | **Excluded** — listed for honesty/transparency |
 
-> **Extraction coverage.** **All 12 sources were captured as real rendered screenshots** (server-side
+> **Extraction coverage.** **All 19 listed sources were captured as real rendered screenshots** (server-side
 > render via WordPress mShots, since the sandbox browser couldn't init system NSS) and visually
-> inspected. The PNGs/JPEGs live in [`/inspiration/`](./inspiration) next to this file. Per-site
+> inspected. The images live in [`/inspiration/`](./inspiration) next to this file. Per-site
 > observed findings below — these are what we actually *saw*, not assumptions.
 
 ### 10a · Screenshot findings (what we observed, captured 2026-06-27)
@@ -637,11 +660,41 @@ principle) — never behind data tables or long text.
   badge, a GET STARTED button) — **not** the animation library it once was. We keep it as a *named* reference
   (micro-interaction vocabulary) but draw motion patterns from kinetics + the `animate` skill instead.
 
+#### design.md ecosystem (also captured & inspected)
+
+- **designmd.me** — **Dark navy canvas + dotted grid + a faint purple glow** — strikingly close to our **Indigo
+  Dusk**. Display "Turn any website into a **design system**" with the emphasis words in **blue serif italic**;
+  a **URL-input hero** with "Try:" suggestion pills (apple/stripe/linear/github/notion); a "WHAT YOU GET"
+  two-card checklist (DESIGN.md vs HTML Preview, `NEW` badge, purple-glow border). → *Validates:* navy + dotted
+  grid + serif-italic emphasis as a premium-on-dark register; the try-pills + feature-checklist pattern.
+- **designmd.supply** — The cleanest **warm off-white** reference (≈ our Walnut Ivory). Left-aligned editorial
+  display "A supply of *style guides*, generated." with **gray serif-italic** emphasis; a pill domain input with
+  a dark round arrow; a 3-col gallery of **brand cards = screenshot thumbnail + favicon + `domain · category` +
+  a color-swatch trio**. → *Adopt:* that brand/service card anatomy (thumb + meta + swatch trio).
+- **getdesign.md** — The **source catalog** our 8 reference files came from (the `awesome-design-md` skill;
+  "Follows Google's official DESIGN.md spec"). Black canvas, mono "QUICK STATS" panel (75 files), a **category
+  sidebar with counts** (AI & LLM 12, Dev Tools 7, Fintech 7…), a search field, and a **searchable table** of
+  systems (favicon + name + one-line description + `New` + Installs/Bookmarked KPIs). → *Adopt:* the
+  category-sidebar + searchable directory table with KPI columns (a strong model for a services directory).
+- **design-md.hyperbrowser.ai** — A **neo-brutalist all-mono terminal** look: sharp corners, hard offset
+  shadows, boxed inline-code chips, all-caps mono ("FOLLOWING GOOGLE'S OPEN STANDARD"), an API-key card. →
+  ***Reject*** the harshness — it's the opposite of our soft civic-premium register. *Adopt only* the boxed
+  inline-code chip for reference numbers.
+- **github.com/google-labs-code/design.md** — The spec repo we conform to: **actively maintained (v0.3.0,
+  16.3k★, Apache-2.0)**, a `@google/design.md` CLI, a PHILOSOPHY.md, docs covering all CSS color formats. →
+  *Confirms:* lint in CI is a live, supported workflow.
+- **github.com/mattpocock/skills** — "Skills for Real Engineers" (**142k★**, MIT, v1.0.1) — the canonical
+  skills-authoring reference (`.claude-plugin`, `skills/`, CLAUDE.md). → *Reference:* patterns for maintaining
+  our own `.kiro/skills/` (esp. `creative-fx`).
+- **github.com/docker/awesome-compose** — Captured for completeness; a standard GitHub repo page of Compose
+  samples. → **Excluded** — not a design source (kept listed for transparency).
+
 **New devices these screenshots earned a place in the system** (folded into the components above):
 the **horizontal domain accordion** (neuform), the **dark telemetry/KPI dashboard** (neuform), the
-**serif-italic emphasis word** in display type (bestdesignsonx, backgrounds.supply), **draughtsman framing**
-(coverflow crosshairs, open-design selection box, blueprint+golden-ratio), the **mono live-readout** (kinetics),
-and the **inline stat strip** (typeui).
+**serif-italic emphasis word** in display type (bestdesignsonx, backgrounds.supply, designmd.me, designmd.supply),
+**draughtsman framing** (coverflow crosshairs, open-design selection box, blueprint+golden-ratio), the
+**mono live-readout** (kinetics), the **inline stat strip** (typeui), the **brand/service card with swatch trio**
+(designmd.supply), and the **searchable directory table + category sidebar** (getdesign.md).
 
 ---
 
