@@ -398,10 +398,12 @@ The object subscribers' services are presented through. Three illustration tiers
 
 ### 6.3 Top bar (chrome) — liquid glass
 Sticky, translucent: `backdrop-filter: blur(20px) saturate(140%)` over `surface` at **≥ 72% opacity**
-(must stay readable in light — no `white/10`), 1px bottom hairline, a top sheen edge. The
-[liquidglass-oss](https://gitlab.com/ogtirth/liquidglass-oss) `feDisplacementMap` refraction is for
-**chrome only** (top bar, modal scrim, receipt) — never on text. Firefox fallback via `@supports`
-→ plain blur. Holds: brand lockup (inline-start), domain tabs (center), theme toggle + user (inline-end).
+(must stay readable in light — no `white/10`), 1px bottom hairline, a top sheen edge. Our default is
+**pure CSS** (broad support, cheap). For the few moments that want true refraction, the
+[liquidglass-oss](https://gitlab.com/ogtirth/liquidglass-oss) **WebGL** React library (variants
+`clear/frosted/dark/prism/dome`; physics `refraction`, `tintColor`, `tintStrength`) may be used for
+**chrome only** (top bar, modal scrim, receipt) — never on text, and gated behind a capability check
+with a CSS-blur fallback. Holds: brand lockup (inline-start), domain tabs (center), theme toggle + user (inline-end).
 
 ### 6.4 Tabs / segmented nav
 Pill container, active segment fills `surface` with hairline + `--section-c` underline; inactive
@@ -511,7 +513,7 @@ principle) — never behind data tables or long text.
 | 3 | [ripplix.com](https://ripplix.com) | UI animation / micro-interaction library | Micro-interaction vocabulary (focus, toggles, toasts, hover reveals) | **Adapt** — micro only, within motion budget |
 | 4 | [coverflow.ashishgogula.in](https://coverflow.ashishgogula.in) | iOS Cover Flow for React (spring, zero layout shift, a11y) | Services showcase / onboarding carousel pattern | **Use** — featured/onboarding, not dense lists |
 | 5 | [gradientbuttons.colorion.co](https://gradientbuttons.colorion.co) | CSS gradient button gallery | Tonal brand gradient + position-shift hover | **Adapt** — primary CTA only, brand hues |
-| 6 | [liquidglass-oss](https://gitlab.com/ogtirth/liquidglass-oss) | Apple liquid glass (CSS/SVG `feDisplacementMap`) | Backdrop blur + saturate + sheen edge + refraction | **Adapt** — chrome only; Firefox fallback |
+| 6 | [liquidglass-oss](https://gitlab.com/ogtirth/liquidglass-oss) | **WebGL** liquid-glass React lib (MIT): variants clear/frosted/dark/prism/dome; physics refraction/tintColor/tintStrength; samples the bg image/video for live refraction | Material presets + a true-refraction option above our CSS-blur default | **Adapt** — chrome only; capability-gated, CSS fallback |
 | 7 | [backgrounds.supply](https://www.backgrounds.supply) | 1,167 curated gradient/grain/mesh backgrounds | Production-ready grain + mesh depth, color moods | **Use** — subtle canvas texture, rebuilt on tokens |
 | 8 | [styles.refero.design](https://styles.refero.design) | 2,000+ AI-readable DESIGN.md examples | Refined design language to borrow/benchmark | **Reference** — pairs with `refero-design` skill |
 | 9 | [google-labs design.md](https://github.com/google-labs-code/design.md) | The DESIGN.md spec + `npx @google/design.md lint` | Front-matter token schema, section order, WCAG lint | **Use** — this file conforms; lint in CI |
@@ -520,6 +522,14 @@ principle) — never behind data tables or long text.
 | 12 | [aura.build](https://aura.build) · [neuform.ai](https://neuform.ai) | AI UI/site generators (neuform = neumorphic) | Generative starting points; neumorphic softness for 3D spot tier | **Reference** — direction only, hand-finish to tokens |
 | 13 | [github.com/mattpocock/skills](https://github.com/mattpocock/skills) | Agent skills library | Skill authoring patterns | **Reference** — for skill maintenance |
 | 14 | [docker/awesome-compose](https://github.com/docker/awesome-compose) | Docker Compose samples | — *not a design source* | **Excluded** — listed for honesty/transparency |
+
+> **Extraction coverage (honest).** Sources fully fetched & analyzed from live content: kinetics,
+> coverflow, liquidglass-oss (README), google-labs design.md, open-design.ai, backgrounds.supply,
+> gradientbuttons, styles.refero, typeui. Sources that are **client-rendered SPAs and could not be
+> machine-extracted** — analyzed only at the *concept* level, pending deeper review:
+> **bestdesignsonx.com** (no SSR/sitemap), aura.build, neuform.ai, and ripplix.com (currently a
+> parked redirect). To mine bestdesignsonx properly, feed in **screenshots** of specific posts and
+> I'll extract concrete patterns (composition, palette, motion) into this bank.
 
 ---
 
