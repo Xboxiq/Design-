@@ -470,7 +470,22 @@ crimson hairline + plain message + retry. Never spinners-as-decoration.
 
 ### 6.10 KPI strip
 Row of mono `tnum` values with caption labels and tiny trend marks; numbers may **tick** on update
-with a ≤6% spring bump (kinetics "number counter"), reduced-motion → instant.
+with a ≤6% spring bump (kinetics "number counter"), reduced-motion → instant. Inline variant
+(typeui): bold number + muted label + `·` separators on one line for social-proof / summary rows.
+
+### 6.11 Domain accordion (horizontal, overview / landing)
+Observed on neuform: the four domains as a **horizontal accordion** — the active panel expands and
+fills with its `--section-c` (eyebrow `01 / SUBSCRIPTIONS`, title, a line-illustration), while the
+others collapse to slim **vertical-label** rails ("Select a card to explore"). One open at a time;
+animate width via `transform`/`flex-grow` with `--ease-standard`. A premium way to present the four
+service domains on a landing without a flat grid. Falls back to a stacked accordion on mobile.
+
+### 6.12 Analytics / telemetry dashboard (dark surface)
+Observed on neuform's "Global Telemetry": a **dark operational dashboard** for reporting/monitoring
+(domain **CA**). Indigo Dusk surface, **mono labels** throughout, a top **KPI strip** (e.g.
+`OPEN CASES 1,204 · AVG RESOLVE 2.1d`), a scrollable **live-feed** row list (status dot + mono ref +
+state + timestamp), and one chart whose series use the **section hues** (never rainbow). This is the
+one place dense data + dark + mono converge; keep it flat (no glass behind data), `tnum`+`zero` numerals.
 
 ---
 
@@ -543,7 +558,7 @@ principle) — never behind data tables or long text.
 |---|--------|------|------------------|--------------------------|
 | 1 | [bestdesignsonx.com](https://bestdesignsonx.com) | Curated gallery of standout design shared on X (ever-updating) | Composition, hierarchy, taste, current craft trends — a **discovery feed** | **Reference** — extract the principle, never pixel-copy |
 | 2 | [kinetics.colorion.co](https://kinetics.colorion.co) | 72 spring-physics interactions (CSS + React + AI prompt, live stiffness/damping) | "Motion with weight": damped springs for the gilt seal, KPI tick, magnetic CTA | **Adapt** — clamp overshoot ≤6%; delight moments only |
-| 3 | [ripplix.com](https://ripplix.com) | UI animation / micro-interaction library | Micro-interaction vocabulary (focus, toggles, toasts, hover reveals) | **Adapt** — micro only, within motion budget |
+| 3 | [ripplix.com](https://ripplix.com) | UI animation / micro-interaction library *(domain now a parked redirect — see §10a)* | Micro-interaction vocabulary (focus, toggles, toasts, hover reveals) | **Adapt** — draw motion from kinetics + `animate` skill instead |
 | 4 | [coverflow.ashishgogula.in](https://coverflow.ashishgogula.in) | iOS Cover Flow for React (spring, zero layout shift, a11y) | Services showcase / onboarding carousel pattern | **Use** — featured/onboarding, not dense lists |
 | 5 | [gradientbuttons.colorion.co](https://gradientbuttons.colorion.co) | CSS gradient button gallery | Tonal brand gradient + position-shift hover | **Adapt** — primary CTA only, brand hues |
 | 6 | [liquidglass-oss](https://gitlab.com/ogtirth/liquidglass-oss) | **WebGL** liquid-glass React lib (MIT): variants clear/frosted/dark/prism/dome; physics refraction/tintColor/tintStrength; samples the bg image/video for live refraction | Material presets + a true-refraction option above our CSS-blur default | **Adapt** — chrome only; capability-gated, CSS fallback |
@@ -556,15 +571,80 @@ principle) — never behind data tables or long text.
 | 13 | [github.com/mattpocock/skills](https://github.com/mattpocock/skills) | Agent skills library | Skill authoring patterns | **Reference** — for skill maintenance |
 | 14 | [docker/awesome-compose](https://github.com/docker/awesome-compose) | Docker Compose samples | — *not a design source* | **Excluded** — listed for honesty/transparency |
 
-> **Extraction coverage (honest).** Sources fully fetched & analyzed from live content: kinetics,
-> coverflow, liquidglass-oss (README), google-labs design.md, open-design.ai, backgrounds.supply,
-> gradientbuttons, styles.refero, typeui. Sources that are **client-rendered SPAs and could not be
-> machine-extracted** — analyzed only at the *concept* level, pending deeper review:
-> **bestdesignsonx.com** (no SSR/sitemap), aura.build, neuform.ai, and ripplix.com (currently a
-> parked redirect). To mine bestdesignsonx properly, feed in **screenshots** of specific posts and
-> I'll extract concrete patterns (composition, palette, motion) into this bank.
+> **Extraction coverage.** **All 12 sources were captured as real rendered screenshots** (server-side
+> render via WordPress mShots, since the sandbox browser couldn't init system NSS) and visually
+> inspected. The PNGs/JPEGs live in [`/inspiration/`](./inspiration) next to this file. Per-site
+> observed findings below — these are what we actually *saw*, not assumptions.
+
+### 10a · Screenshot findings (what we observed, captured 2026-06-27)
+
+> Images: `inspiration/<name>.jpg`. Observations are paraphrased; *content rephrased for compliance.*
+
+- **bestdesignsonx.com** — Near-white canvas with a faint **rainbow wash** along the top edge. Header is a
+  high-contrast **serif display** with one word set in **blue italic** ("Best *Designs* on X.com"),
+  subtitle in muted sans, "Updated hourly." A view-mode switch (list / grid / **masonry**) sits top-end of an
+  **8,000+ item bento gallery**. The cards themselves teach the lesson: a mix of **light neumorphic widgets**
+  (a soft world-clock card), **dark premium cards**, **pastel mesh gradients**, **glossy 3D spot icons**, and
+  **brand-kit bento grids**. → *Adopt:* the masonry/bento services gallery, the serif-italic emphasis word,
+  the light-neumorphic + dark-premium card mix.
+- **kinetics.colorion.co** — **Dark warm charcoal** + a **single orange** accent (+ glow on the primary
+  button). Mono eyebrow `// 72 SPRING-DRIVEN INTERACTIONS`; a **condensed heavy display** with the last word
+  in orange ("MOTION THAT HAS **WEIGHT.**"); a **live mono readout** panel (`damping 24 · stiffness 320 · mass 1.0`);
+  a quote block with an orange inline-start border. → *Adopt:* single-accent + glow CTA; the mono "live readout"
+  device for any tunable value; mono eyebrow.
+- **gradientbuttons.colorion.co** — White canvas; a **featured/announcement bar** (cream, a tag + Visit). A
+  **4-column card grid** where each card = title + heart/copy actions + a gradient "HOVER ME" preview +
+  "Show code / Copy CSS" footer. Buttons are **two-stop tonal gradients** (the navy ones map directly to our
+  indigo). → *Adopt:* the card anatomy (title · actions · preview · footer-actions); confirms tonal brand
+  gradient for the primary CTA only.
+- **coverflow.ashishgogula.in** — White shadcn aesthetic with **crosshair `+` corner marks framing the hero**
+  (draughtsman framing), an eyebrow pill, a tight bold display, a black pill CTA, and a **mono install-command
+  bar with a copy icon**; theme toggle + GitHub star count. → *Adopt:* crosshair framing for a hero moment;
+  mono command/reference bar with copy.
+- **backgrounds.supply** — **Black starfield** canvas with a **single glossy 3D pink "asterisk" app-icon** as
+  the one lit object; display mixes sans with a **serif-italic** emphasis word ("Jaw-dropping *backgrounds*…");
+  a white primary pill + dark secondary pill. → *Confirms:* our "one lit 3D-spot object" + serif-italic emphasis.
+- **styles.refero.design** — White; a **Beta** pill; a **serif editorial** display; a search bar + dark Search
+  button; a row of **category filter pills** (Minimal · Clean SaaS · Editorial Type · Soft Gradients · Monochrome
+  · Playful · High Contrast · Premium) and **Trending / Popular / Newest** tabs over a gallery grid. → *Adopt:*
+  the filter-pill taxonomy + tabbed gallery for browsing many services/templates.
+- **aura.build** — White; the **hero IS an AI prompt composer** (a chat box with a Design-System chip, a model
+  dropdown, attach icons), over **faint vertical column-grid guides**; an eyebrow pill announces the model; a
+  **tri-state theme toggle** (light/auto/dark); a "Trending" gallery of generated sites. → *Adopt:* column-grid
+  background guides; tri-state theme toggle; (note) composer-as-hero is a strong pattern if we add an assistant.
+- **neuform.ai** — A **bento showcase**. A dark auth panel (mono eyebrow, "Continue with Google" pill with a
+  circular arrow, **avatar social-proof** "24.4K building"). Cards include a blue-gradient starburst, a **dark
+  "Global Telemetry" particle-sphere dashboard** with mono labels + a **LIVE FEED** row list + a **KPI strip**
+  (`12,042 NODES · 24.8 TB/s`), and a **horizontal accordion** of category cards (`01/DIRECTION` with an orbit
+  line-illustration, `02/EXPERIENCE`, `03/IDENTITY` collapsed to vertical labels — "Select a card to explore").
+  → *Adopt:* the **horizontal accordion for the four domains**; the **dark telemetry dashboard** (mono + KPI strip
+  + live feed) as our analytics surface; avatar social-proof; numbered category illustrations.
+- **typeui.sh** — White shadcn; a **left-aligned bold display with an inline accent glyph**; black primary +
+  outlined secondary; an **inline stat strip** ("77 design skills · 449 prompts · 7,168 users" — bold numbers,
+  muted labels, dot separators); GitHub star count. → *Adopt:* the inline bold-number / muted-label stat strip
+  (pairs with our KPI strip).
+- **open-design.ai** — Light **blueprint grid + golden-ratio spiral** guides with **scattered 3D design-tool
+  spot objects** (pencil, a "T", a capsule); serif + sans display pairing; a witty **green Figma selection-box
+  (corner handles) framing the headline**; black Download pill + outlined "Star 71.9K". → *Adopt:* blueprint +
+  golden-ratio guide lines and scattered 3D-spot props for a hero; the selection-box framing as an optional wink.
+- **liquid-glass-oss (playground)** — A **glass component studio**: a left sidebar `COMPONENTS (15)` with
+  circular initial badges; a center **dark glass card** ("Bold Text" + a green toggle) floating over vivid
+  artwork with **visible refraction**; a right **"Glass physics" panel** of sliders (`Blur .18 · Refraction .12 ·
+  Chromatic .045 · Distortion .015 · Edge light .08 · Specular .14 · Fresnel 1.08 · Radius 22 · Depth 42`), a Dark
+  variant, and a live code-usage block. → *Adopt (chrome only, readability-gated):* these as our glass-physics
+  defaults; the component-sidebar + live-code pattern for our own docs.
+- **ripplix.com** — **Captured, and confirmed it is now a parked redirect** ("Branded Short Domain", an ACTIVE
+  badge, a GET STARTED button) — **not** the animation library it once was. We keep it as a *named* reference
+  (micro-interaction vocabulary) but draw motion patterns from kinetics + the `animate` skill instead.
+
+**New devices these screenshots earned a place in the system** (folded into the components above):
+the **horizontal domain accordion** (neuform), the **dark telemetry/KPI dashboard** (neuform), the
+**serif-italic emphasis word** in display type (bestdesignsonx, backgrounds.supply), **draughtsman framing**
+(coverflow crosshairs, open-design selection box, blueprint+golden-ratio), the **mono live-readout** (kinetics),
+and the **inline stat strip** (typeui).
 
 ---
+
 
 ## 10b · What each reference taught us (deep synthesis)
 
