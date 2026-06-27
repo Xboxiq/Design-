@@ -296,7 +296,16 @@ For Arabic, the eyebrow uses Readex Pro at 0.75rem with `+0.04em` (Arabic doesn'
 Latin tracking) — keep the *role*, adapt the *mechanics*.
 
 **Numerals are tabular** (`font-feature-settings: "tnum"`) in tables, KPIs, money, and IDs so
-columns align and digits don't jitter on update.
+columns align and digits don't jitter on update. For reference numbers and account IDs, also enable
+a **slashed zero** (`"zero"`, à la Origin's data labels) so `0` never reads as `O`.
+
+**Progressive tracking (Seed's law).** Tracking tightens as size grows and loosens as it shrinks:
+≈ `−0.025em` at display → `−0.01em` at h3 → `0` at body → **positive** wide tracking only on the mono
+eyebrow/stamped labels. Never apply negative tracking to Arabic or to body sans.
+
+**Two registers, one job each** (Origin/Sketch lesson): the **display** face carries emotion and
+hierarchy; the **mono** face carries structure — stamped, wide-tracked, uppercase "labels that feel
+pressed, not typed." Keeping these two registers distinct is what reads as considered rather than generic.
 
 ---
 
@@ -330,6 +339,13 @@ Depth is built from **four layers of light**, never a single gray drop shadow.
 
 **Never:** warm/black box-shadows, `0 2px 4px rgba(0,0,0,.25)`-style default shadows, or stacking
 shadows to fake importance. Importance comes from the one signature, not from shadow weight.
+
+**Surface ladder (lift by color, not shadow).** Borrowed from Apple/Origin/Seed: prefer raising an
+element by stepping it **up the surface ladder** rather than adding shadow — `bg → surface →
+surface-2 → surface-3`. Never skip a step (the subtle elevation read depends on adjacency). Seed's
+rule, adopted verbatim: *if a component must feel raised, shift its background one step before you
+reach for a shadow.* Our soft shadow (above) is reserved for genuinely floating layers (cards on
+canvas, popovers) — not for every panel.
 
 ---
 
@@ -404,6 +420,23 @@ Sticky, translucent: `backdrop-filter: blur(20px) saturate(140%)` over `surface`
 `clear/frosted/dark/prism/dome`; physics `refraction`, `tintColor`, `tintStrength`) may be used for
 **chrome only** (top bar, modal scrim, receipt) — never on text, and gated behind a capability check
 with a CSS-blur fallback. Holds: brand lockup (inline-start), domain tabs (center), theme toggle + user (inline-end).
+
+**Floating pill nav (marketing / landing variant).** For the public landing — not the dense app shell —
+the top bar may instead be a **fully-rounded floating capsule** (Seed/Apple/Sketch device): `surface`
+fill, 1px hairline, `pill` radius, detached from the page edge with top margin, holding brand + a few
+links + one primary pill. Premium and confident; never used over data-dense operational views.
+
+### 6.3b Announcement bar (scarcity moment)
+An optional full-width strip at the very top for one timely message. Following Seed's lime band, it is
+the **only color-rich band** on the page and earns attention through scarcity — use the section hue or
+a soft gold wash, dark readable text, one inline link. Never stack two; never make it permanent chrome.
+
+### 6.3c Chromatic showcase card (featured service / "lit window")
+For 1–3 *featured* services on a landing or overview — Origin's "lit window" idea. A larger card whose
+surface is washed in its `--section-c` (or a section-hued mesh), a **mono uppercase tag** top-inline-start,
+a 3D-spot illustration, title + one line, and a single ghost CTA. The chroma lives **inside the card**
+(like a lit panel in the dark), never leaking into surrounding chrome. Standard grid cards stay neutral
+(§6.2); only the featured few get the chromatic treatment, so it keeps its impact.
 
 ### 6.4 Tabs / segmented nav
 Pill container, active segment fills `surface` with hairline + `--section-c` underline; inactive
@@ -530,6 +563,32 @@ principle) — never behind data tables or long text.
 > **bestdesignsonx.com** (no SSR/sitemap), aura.build, neuform.ai, and ripplix.com (currently a
 > parked redirect). To mine bestdesignsonx properly, feed in **screenshots** of specific posts and
 > I'll extract concrete patterns (composition, palette, motion) into this bank.
+
+---
+
+## 10b · What each reference taught us (deep synthesis)
+
+> Proof of reading, not decoration. Each of the nine attached platform files was read in full; below is
+> the **one principle we adopted** and **what we deliberately rejected** from each — so this system is a
+> reasoned synthesis, not a mash-up.
+
+| Reference | Signature principle | We **adopt** | We **reject** (and why) |
+|-----------|---------------------|--------------|--------------------------|
+| **Authkit** | Midnight blueprint, one iris accent, elevation from hairline insets + glow, `dotDigital` eyebrow | Single action color (indigo); hairline-inset elevation; mono eyebrow labels | Midnight-black canvas — we lift to Indigo Dusk for long-shift comfort |
+| **Superhuman** | Parchment (not white) canvas, compressed display tracking (lh < 1), violet only as outline, aubergine **brackets** page top+bottom, glass panels float over hero | Warm canvas not white; tight display tracking; glass on chrome; crimson as a "bracket"/lead rule | Cinematic photo hero — an ops tool shows work, not mood photography |
+| **Dia** | Achromatic + one spectrum gradient as the brand, frosted cards (white 90% + blur), featherweight wt300 display, deliberately neutral gray "anti-CTA" buttons | Frosted card surfaces; extreme color restraint; the single soft-shadow discipline | Featherweight display (we choose **confident medium 500–600**); neutral anti-CTA (we **commit** to indigo as action) |
+| **Active Theory** | Void-black stage, a single 3D object *is* the interface, architectural mono labels, chrome pushed to corners, elevation absent | "One signature owns the visual field"; mono technical labels; corner-anchored chrome | Void black + no product chrome — we're a dense operational surface, not a portfolio |
+| **Seed** | One forest green does all chromatic work, pill forms everywhere, wt300, **no shadow — lift by color step / hairline / scale**, lime scarcity band, `ss05` alternates | Section-hue 1:1 discipline; **no-shadow "lift by color step"** option; scarcity accent (our gold); pill forms | wt300 whisper headlines — our civic voice is a touch more present |
+| **Origin Financial** | Editorial serif wt300 display, **one white pill CTA with arrow**, a surface ladder you never skip, chromatic feature cards like "lit windows", **stamped** mono labels (`tnum`+`zero`), one atmospheric gradient per page | Single pill CTA + trailing arrow; the surface ladder; **chromatic showcase cards** (section-hued); stamped mono labels; "one atmospheric moment per page" | Pure-serif display + near-black fintech canvas — too cold for a civic service |
+| **Apple** | Black void, "one lit object", tight SF tracking at 400/600 (no bold), **depth via surface steps + radii, never shadow**, blue rationed to one accent/screen, 120px breathing, 999px buttons / 980px nav pill | One lit object per screen; tight tracking; no-bold display; rationed accent; generous gaps; pill geometry | Pure black + product-photo hero — replaced by Indigo Dusk + illustration tiers |
+| **Sketch** | Serif display + sans body register split, **glow-halo dark pill CTA**, dusk-wash gradient *never* on UI, chromatic only inside pill badges, "one idea per screen" | Display/body register split; glow-halo for the **ceremonial dark moment**; gradient atmospheric-only; chromatic-in-badges-only; one idea per screen | Serif-only display + pink romance palette — not the civic register |
+| **DESIGN0001** (our prior) | Quiet institutional, `--f-*` tokens, four OKLCH domains, strong anti-slop, cache/specificity discipline | Token discipline; 4-domain logic; every guardrail; the verification loop | The muted, "competent but flat" finish — elevated here into a point of view |
+
+**The convergent laws** (every reference agreed on these — non-negotiable for us):
+1. **One chromatic action color**, rationed. 2. **Tight negative tracking** on display type.
+3. **Depth without heavy shadow** (color steps, hairlines, radii, or at most one soft glow).
+4. **A warm/lifted canvas**, never sterile white or OLED black. 5. **One signature per screen**;
+silence and whitespace are tools. 6. **Mono "stamped" labels** as the quiet structural voice.
 
 ---
 
