@@ -597,7 +597,11 @@ principle) — never behind data tables or long text.
 > **Extraction coverage.** **All 19 listed sources were captured as real rendered screenshots** (server-side
 > render via WordPress mShots, since the sandbox browser couldn't init system NSS) and visually
 > inspected. The images live in [`/inspiration/`](./inspiration) next to this file. Per-site
-> observed findings below — these are what we actually *saw*, not assumptions.
+> observed findings below — these are what we actually *saw*, not assumptions. **For the exhaustive,
+> corner-by-corner dossier** — exact tokens pulled from each site's live stylesheets (palette, fonts,
+> gradients, shadows, easings, `@keyframes`), full content/section outlines, and per-site adopt/reject —
+> see [`inspiration/DEEP-ANALYSIS.md`](./inspiration/DEEP-ANALYSIS.md) (raw data in
+> `inspiration/_tokens.json` + `_outline.json`).
 
 ### 10a · Screenshot findings (what we observed, captured 2026-06-27)
 
